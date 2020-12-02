@@ -94,11 +94,11 @@ function App() {
       </TabPanel>
 
       <TabPanel value={tabValue} index={1}>
-        <Upscale filename={pictures.name}/>
+        <Upscale filename={pictures ? pictures.name : "/static/__EmPtY__.jpg"}/>
       </TabPanel>
 
+
       <Button color="secondary" variant="contained" onClick={clickClear}>Clear</Button>
-      
     </div>
   );
 }

@@ -33,18 +33,20 @@ const Upscale = props => {
   const [isUpScaled, setIsUpScaled] = useState(false);
   const [isUpscaling, setIsUpscaling] = useState(false);
 
-  const clickUpscale = (ev) => {
+  const clickUpscale = async (ev) => {
     ev.preventDefault();
 
     setIsUpscaling(true);
-    axios({
-        method: 'post',
-        url: 'http://localhost:5000/upscale',
-        config: { headers: { 'Content-Type': 'applications/json' } }
-    })
-        .then(response => setIsUpScaled(response['data']['result']))
-        .catch(errors => console.log(errors))
+    // axios({
+    //     method: 'post',
+    //     url: 'http://localhost:5000/upscale',
+    //     config: { headers: { 'Content-Type': 'applications/json' } }
+    // })
+    //     .then(response => setIsUpScaled(response['data']['result']))
+    //     .catch(errors => console.log(errors))
+    const response = await axios({method: 'post', url: 'http://localhost:5000/upscale', config: { headers: { 'Content-Type': 'applications/json' } }})
     setIsUpscaling(false);
+    setIsUpScaled(response['data']['result']);
   }
 
   return (
@@ -58,7 +60,7 @@ const Upscale = props => {
         </Button>
       </div>
       <div>
-        <img src={isUpScaled ? isUpScaled : "/static/empty.jpg"} alt={"empty.jpg"}/> 
+        <img src={isUpScaled ? isUpScaled : "/static/__EmPtY__.jpg"} alt={"empty.jpg"}/> 
       </div>
     </div>
 

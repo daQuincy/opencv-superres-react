@@ -47,12 +47,12 @@ def clear():
         if "__EmPtY__.jpg" not in i:
             os.remove(i)
 
-    return "Cleared!"
+    return build_actual_response(jsonify({"result": "Cleared"}))
 
-# @app.route('/display/<filename>')
-# def display_image(filename):
+@app.route('/display/<filename>')
+def display_image(filename):
 	
-# 	return redirect(url_for('static', filename=filename), code=301)
+	return redirect(url_for('static', filename=filename), code=301)
 
 @app.route("/upscale", methods=["POST"])
 def upscale_image():
