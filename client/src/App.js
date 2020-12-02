@@ -94,7 +94,7 @@ function App() {
       </TabPanel>
 
       <TabPanel value={tabValue} index={1}>
-        <Upscale filename={pictures ? pictures.name : "/static/__EmPtY__.jpg"}/>
+        <Upscale filename={pictures ? pictures.name : "./static/__EmPtY__.jpg"}/>
       </TabPanel>
 
 

@@ -15,21 +15,20 @@ const Uploader = props => {
     setPictures(picture[0]);
   };
 
-  const clickUpload = (ev) => {
+  const clickUpload = async (ev) => {
     ev.preventDefault();
     const formData = new FormData();
 
     formData.append("file", pic);
 
-    axios({
+    const response = await axios({
         method: 'post',
         url: 'http://localhost:5000/upload',
         data: formData,
         config: { headers: { 'Content-Type': 'multipart/form-data' } }
     })
-        .then(response => console.log(response))
-        .catch(errors => console.log(errors))
-
+    
+    console.log(response);
     setTab(1);
     setUpload(true);
   }

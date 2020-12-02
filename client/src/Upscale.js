@@ -44,7 +44,8 @@ const Upscale = props => {
     // })
     //     .then(response => setIsUpScaled(response['data']['result']))
     //     .catch(errors => console.log(errors))
-    const response = await axios({method: 'post', url: 'http://localhost:5000/upscale', config: { headers: { 'Content-Type': 'applications/json' } }})
+    const response = await axios({method: 'post', url: 'http://localhost:5000/upscale', config: { headers: { 'Content-Type': 'applications/json' } }});
+    console.log(response);
     setIsUpscaling(false);
     setIsUpScaled(response['data']['result']);
   }
@@ -52,7 +53,7 @@ const Upscale = props => {
   return (
     <div className="rowC">
       <div>
-        <img src={"/static/"+filename} alt={filename}/>  
+        <img src={"./static/"+filename} alt={filename}/>  
       </div>
       <div>
         <Button color="secondary" variant="contained" onClick={clickUpscale} className={buttonStyle.margin}>
@@ -60,7 +61,7 @@ const Upscale = props => {
         </Button>
       </div>
       <div>
-        <img src={isUpScaled ? isUpScaled : "/static/__EmPtY__.jpg"} alt={"empty.jpg"}/> 
+        <img src={isUpScaled ? isUpScaled : "./static/__EmPtY__.jpg"} alt={"empty.jpg"}/> 
       </div>
     </div>
 
