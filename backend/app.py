@@ -80,5 +80,5 @@ def build_actual_response(response):
 def index():
     return app.send_static_file("index.html")
 
-# if __name__ == "__main__":
-#     app.run(debug=True, host="0.0.0.0")
+if __name__ == "__main__":
+    app.run(debug=True, host="0.0.0.0")
