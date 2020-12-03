@@ -47,13 +47,13 @@ const Upscale = props => {
     const response = await axios({method: 'post', url: 'http://localhost:5000/upscale', config: { headers: { 'Content-Type': 'applications/json' } }});
     console.log(response);
     setIsUpscaling(false);
-    setIsUpScaled(response['data']['result']);
+    setIsUpScaled('http://localhost:5000/static/'+response['data']['result']);
   }
-
+  
   return (
     <div className="rowC">
       <div>
-        <img src={"./static/"+filename} alt={filename}/>  
+        <img src={"http://localhost:5000/static/"+filename} alt={filename}/>  
       </div>
       <div>
         <Button color="secondary" variant="contained" onClick={clickUpscale} className={buttonStyle.margin}>
@@ -61,7 +61,7 @@ const Upscale = props => {
         </Button>
       </div>
       <div>
-        <img src={isUpScaled ? isUpScaled : "./static/__EmPtY__.jpg"} alt={"empty.jpg"}/> 
+        <img src={isUpScaled ? isUpScaled : "http://localhost:5000/static/__EmPtY__.jpg"} alt={"empty.jpg"}/> 
       </div>
     </div>
 

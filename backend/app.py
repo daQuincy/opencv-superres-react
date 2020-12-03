@@ -2,10 +2,12 @@ import os
 import cv2
 import time
 import glob
-from flask import Flask, flash, request, redirect, url_for, make_response, jsonify
+import flask
+from flask import Flask, request, redirect, url_for, make_response, jsonify, send_file
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__, static_folder='build', static_url_path='/')
+port = int(os.environ.get("PORT", 5000))
 
 # https://www.reddit.com/r/reactjs/comments/axreng/reactjs_axios_and_flask_image_upload_stuck/
 
@@ -49,20 +51,15 @@ def clear():
 
     return build_actual_response(jsonify({"result": "Cleared"}))
 
-@app.route('/display/<filename>')
-def display_image(filename):
-	
-	return redirect(url_for('static', filename=filename), code=301)
-
 @app.route("/upscale", methods=["POST"])
 def upscale_image():
     image_file = fn.get()
     img = cv2.imread(image_file)
     upscaled = sr.upsample(img)
-    filename = "./build/static/"+image_file.split("/")[-1].split(".")[0]+"_up.png"
-
-    cv2.imwrite(filename, upscaled)
-
+    filename = "./build/static/imageup.png"
+    filename = time.strftime("%Y%m%d-%H%M%S") + ".png"
+    cv2.imwrite("./build/static/" + filename, upscaled)
+    
     return build_actual_response(jsonify({"result": filename}))
 
 def build_preflight_response():
@@ -76,9 +73,19 @@ def build_actual_response(response):
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
+@app.route("/display__image/<filename>")
+def display_image(filename):
+    print(filename)
+    return redirect(url_for('static', filename=filename), code=301)
+
+# @app.route('/img=<filename>')
+# def image(filename):
+#     return send_file("static/"+filename)
+
 @app.route("/")
 def index():
+    clear()
     return app.send_static_file("index.html")
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0")
+    app.run(debug=True, host="0.0.0.0", port=port)

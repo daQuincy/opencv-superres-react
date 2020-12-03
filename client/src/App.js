@@ -63,6 +63,7 @@ function App() {
   const clickClear = (ev) => {
     ev.preventDefault();
 
+
     setTabValue(0);
     setUploadClicked(false);
 
@@ -74,7 +75,7 @@ function App() {
         .then(response => console.log(response))
         .catch(errors => console.log(errors))
   }
-  
+
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -94,7 +95,7 @@ function App() {
       </TabPanel>
 
       <TabPanel value={tabValue} index={1}>
-        <Upscale filename={pictures ? pictures.name : "./static/__EmPtY__.jpg"}/>
+        <Upscale filename={pictures ? pictures.name : "http://localhost:5000/image/__EmPtY__.jpg"}/>
       </TabPanel>
 
 
