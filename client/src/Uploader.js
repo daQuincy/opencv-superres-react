@@ -30,7 +30,7 @@ const Uploader = props => {
     
     console.log(response);
     setTab(1);
-    setUpload(true);
+    setUpload(response['data']['result']);
   }
 
   return (

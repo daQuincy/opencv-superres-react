@@ -30,13 +30,12 @@ sr.setModel("lapsrn", 8)
 def upload_file():
     if request.method == 'POST':
         f = request.files['file']
-        #filename = time.strftime("%Y%m%d-%H%M%S") + "." + f.filename.split(".")[-1]
-        filename = "./build/static/" + f.filename
-        f.save(filename)
+        filename = time.strftime("%Y%m%d-%H%M%S") + ".png"
+        f.save("./build/static/" + filename)
 
         fn.set(filename)
 
-        return build_actual_response(jsonify({"result": "Uploaded"}))
+        return build_actual_response(jsonify({"result": filename}))
 
 @app.route("/filename", methods=["POST"])
 def get_file_name():
@@ -56,7 +55,6 @@ def upscale_image():
     image_file = fn.get()
     img = cv2.imread(image_file)
     upscaled = sr.upsample(img)
-    filename = "./build/static/imageup.png"
     filename = time.strftime("%Y%m%d-%H%M%S") + ".png"
     cv2.imwrite("./build/static/" + filename, upscaled)
     
