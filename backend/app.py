@@ -52,7 +52,7 @@ def clear():
 
 @app.route("/upscale", methods=["POST"])
 def upscale_image():
-    image_file = fn.get()
+    image_file = "./build/static/" + fn.get()
     img = cv2.imread(image_file)
     upscaled = sr.upsample(img)
     filename = time.strftime("%Y%m%d-%H%M%S") + ".png"
