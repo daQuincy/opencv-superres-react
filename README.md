@@ -6,6 +6,7 @@ This is a SIMPLE, QUICK and DIRTY frontend for OpenCV's `dnn_superres` submodule
 
 ## Demo  
 https://superres-react.herokuapp.com/  
+(The demo on Heroku can be painfully slow at times, try refreshing if it doesn't work)
 ![demo](pikachu.gif)  
 
 ## How to run locally
