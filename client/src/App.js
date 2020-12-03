@@ -69,7 +69,7 @@ function App() {
 
     axios({
         method: 'post',
-        url: 'http://localhost:5000/clear',
+        url: '/clear',
         config: { headers: { 'Content-Type': 'applications/json' } }
     })
         .then(response => console.log(response))
@@ -95,7 +95,7 @@ function App() {
       </TabPanel>
 
       <TabPanel value={tabValue} index={1}>
-        <Upscale filename={pictures ? uploadClicked : "http://localhost:5000/static/__EmPtY__.jpg"}/>
+        <Upscale filename={pictures ? uploadClicked : "/static/__EmPtY__.jpg"}/>
       </TabPanel>
 
 

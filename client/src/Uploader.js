@@ -23,7 +23,7 @@ const Uploader = props => {
 
     const response = await axios({
         method: 'post',
-        url: 'http://localhost:5000/upload',
+        url: '/upload',
         data: formData,
         config: { headers: { 'Content-Type': 'multipart/form-data' } }
     })
@@ -35,7 +35,7 @@ const Uploader = props => {
 
   return (
     <div>
-      <form action="http://localhost:5000/upload" method="post" encType="multipart/form-data">
+      <form action="/upload" method="post" encType="multipart/form-data">
         <ImageUploader
           withPreview={true}
           buttonText={(typeof pic==='undefined' || pic.length===0) ? 'Choose Image' : pic.name + ' chosen, click to change'}
